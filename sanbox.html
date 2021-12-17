@@ -1,0 +1,285 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+	<link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}" src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}" src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+	<#if .locale == "zh_CN">
+		<link name="NotoSansCJKsc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKsc_Regular}" src-bold="${nsfont.NotoSansCJKsc_Bold}" bytes="2" />
+	<#elseif .locale == "zh_TW">
+		<link name="NotoSansCJKtc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKtc_Regular}" src-bold="${nsfont.NotoSansCJKtc_Bold}" bytes="2" />
+	<#elseif .locale == "ja_JP">
+		<link name="NotoSansCJKjp" type="font" subtype="opentype" src="${nsfont.NotoSansCJKjp_Regular}" src-bold="${nsfont.NotoSansCJKjp_Bold}" bytes="2" />
+	<#elseif .locale == "ko_KR">
+		<link name="NotoSansCJKkr" type="font" subtype="opentype" src="${nsfont.NotoSansCJKkr_Regular}" src-bold="${nsfont.NotoSansCJKkr_Bold}" bytes="2" />
+	<#elseif .locale == "th_TH">
+		<link name="NotoSansThai" type="font" subtype="opentype" src="${nsfont.NotoSansThai_Regular}" src-bold="${nsfont.NotoSansThai_Bold}" bytes="2" />
+	</#if>
+    <macrolist>
+        <macro id="nlheader">
+            <table class="header"><tr>
+	<td align="left"><#if companyInformation.logoUrl?length != 0><img height="60px" src="${Subsidiary.logoUrl}" vertical-align="top" width="75px" /></#if></td>
+	<td align="left">
+	<h1>Tax Invoice</h1>
+
+	<h2>#Invoice ${record.tranid}</h2>
+	</td>
+	</tr>
+	<tr height="8px">
+	<td align="left">&nbsp;</td>
+	</tr></table>
+        </macro>
+        <macro id="nlfooter">
+            <table align="right" border="0" class="footer"><tr>
+	<td><#if companyInformation.companyname?length != 0></#if></td>
+	</tr></table>
+        </macro>
+    </macrolist>
+    <style type="text/css">table {
+				<#if .locale == "zh_CN">
+				  font-family: stsong, sans-serif;
+        <#elseif .locale == "zh_TW">
+          font-family: msung, sans-serif;
+        <#elseif .locale == "ja_JP">
+          font-family: heiseimin, sans-serif;
+        <#elseif .locale == "ko_KR">
+          font-family: hygothic, sans-serif;
+        <#elseif .locale == "ru_RU">
+          font-family: verdana;
+        <#else>
+          font-family: sans-serif;
+        </#if>
+				font-size: 9pt;
+				margin-top: 10px;
+				table-layout: fixed;
+				width: 100%;
+                               
+			}
+			th {
+				font-weight: bold;
+				font-size: 10pt;
+				vertical-align: middle;
+				padding-right: 8px;
+				padding-left: 8px;
+				padding-bottom: 3px;
+				padding-top: 5px;
+                                background-color: #00467F;
+				color: #ffffff;
+
+			}
+			td {
+				padding-right: 6px;
+				padding-left: 6px;
+				padding-bottom: 4px;
+				padding-top: 4px;
+
+			}
+			b {
+			   font-weight: bold;
+			   color: #333333;
+			}
+
+                        body {
+                           background-color: #ffffff;
+                        }
+
+                        table.border_bottom tr{
+                           border-bottom: 3px solid #black;
+                        }
+
+                        table.header{
+                           <!--background-color: #eaeaea;-->
+                           border-bottom: 4px solid #666666;
+                        }
+
+			table.header td {
+				padding: 0px;
+				font-size: 10pt;
+			}
+
+                        table.footer{
+                           width: 92%;
+                           font-size: 5pt;
+                           color: #ffffff;
+                        }
+
+			table.footer td {
+				padding: 0px;
+				font-size: 8pt;
+			}
+			table.itemtable th {
+				padding-bottom: 5px;
+				padding-top: 5px;
+			}
+                        table.itemtable td {
+				border: .5px solid #e0e0e0;
+			}
+			table.body td {
+				padding-top: 2px;
+			}
+			table.total {
+				page-break-inside: avoid;
+			}
+
+                        table.total td{
+				color: #2B547E;
+			}
+
+			tr.totalrow {
+				background-color: #ffffff;
+				line-height: 200%;
+                                color: #2B547E;
+			}
+			
+			td.addressheader {
+				font-size: 8pt;
+				padding-top: 8px;
+				padding-bottom: 2px;
+                                text-transform: uppercase;
+                                
+			}
+			td.address {
+				padding-top: 0px;
+                                
+			}
+                        td.item {
+				padding-top: 0px;
+                                border: 0px solid #ffffff;
+			}
+			
+			span.title {
+				font-size: 14pt;
+			}
+			span.number {
+				font-size: 16pt;
+                                color:#00467f;
+			}
+                        span.total {
+				<!--color:#00467f;-->
+                                font-size: 10pt;
+			}
+			
+			hr {
+				width: 100%;
+				color: #d3d3d3;
+				background-color: #d3d3d3;
+				height: 1px;
+			}
+</style>
+</head>
+<body header="nlheader" header-height="11%" footer="nlfooter" footer-height="20pt" padding="0.5in 0.5in 0.5in 0.5in" size="Letter">
+    <table border="0" cellpadding="1" cellspacing="1" style="width: 694px;"><tr>
+	<td rowspan="4" style="width: 492px; border-color: rgb(255, 255, 255); white-space: nowrap;">PO Box 540, Pukekohe 2340, New Zealand<br/>
+9-15 Sweetcorn Place, Pukekohe 2120<br/>
+P: +64 9 238 3402, F: +64 9 238 3405<br/>
+E: admin@furtex.co.nz | www.furtex.co.nz<br/>
+GST No. 106-705-69</td>
+	<th colspan="2" rowspan="1" style="width: 165px; border-color: rgb(187, 187, 187); background-color: rgb(187, 187, 187);">Shipment Id</th>
+	</tr>
+	<tr>
+	<td colspan="2" rowspan="1" style="width: 169px; border-color: rgb(0, 0, 0);">${record.custbody_jj_fl_related_if_num}</td>
+	</tr>
+	<tr>
+	<th style="width: 79px; background-color: rgb(187, 187, 187);">${record.trandate@label}</th>
+	<th style="width: 79px; background-color: rgb(187, 187, 187);">${record.entity@label}</th>
+	</tr>
+	<tr>
+	<td style="width: 83px; border-color: rgb(0, 0, 0);">${record.trandate}</td>
+	<td style="width: 83px; border-color: rgb(0, 0, 0);">${record.entity}</td>
+	</tr></table>
+
+<table align="left" border="0" width="100%"><tr>
+	<td class="addressheader" colspan="6"><b>${record.billaddress@label}</b></td>
+	<td>&nbsp;</td>
+	<td class="addressheader" colspan="6"><b>${record.shipaddress@label}</b></td>
+	</tr>
+	<tr>
+	<td class="address" colspan="6"><span style="color:#666666;">${record.billaddress}</span></td>
+	<td>&nbsp;</td>
+	<td class="address" colspan="6"><span style="color:#666666;">${record.shipaddress}</span></td>
+	</tr></table>
+
+<table align="left" border="0" class="itemtable" width="100%">
+<thead>
+	<tr>
+	<th colspan="8" style="background-color: rgb(187, 187, 187);">${record.otherrefnum@label}</th>
+	<th colspan="9" style="background-color: rgb(187, 187, 187);">${record.vendorno@label}</th>
+	<th colspan="7" style="background-color: rgb(187, 187, 187); width: 167px;">${record.total@label}</th>
+	<th colspan="7" style="background-color: rgb(187, 187, 187); width: 280px;">${record.currency@label}</th>
+	</tr>
+</thead><tr>
+	<td colspan="8" style="align: left;"><span style="color:#666666;">${record.otherrefnum}</span></td>
+	<td colspan="9" style="align: center;"><span style="color:#666666;">${record.vendorno}</span></td>
+	<td colspan="7" style="width: 171px;"><span style="color:#666666;">${record.total}</span></td>
+	<td colspan="7" style="width: 284px;"><span style="color:#666666;">${record.currency}</span></td>
+	</tr></table>
+
+<table align="left" border="0" class="itemtable" style="width: 815px;" width="100%">
+<thead>
+	<tr>
+	<th colspan="8" style="background-color: rgb(187, 187, 187);">${record.terms@label}</th>
+	<th colspan="9" style="background-color: rgb(187, 187, 187);">${record.duedate@label}</th>
+	<th colspan="7" style="background-color: rgb(187, 187, 187);">${record.aproorder@label}</th>
+	<th colspan="13" style="background-color: rgb(187, 187, 187); width: 259px;">${record.createdfrom@label}</th>
+	</tr>
+</thead><tr>
+	<td colspan="8" style="align: left;"><span style="color:#666666;">${record.terms}</span></td>
+	<td colspan="9" style="align: left;"><span style="color:#666666;">${record.duedate}</span></td>
+	<td colspan="7" style="align: left;"><span style="color:#666666;">${record.approorder}</span></td>
+	<td colspan="13" style="width: 263px;"><span style="color:#666666;">${record.createdfrom}</span></td>
+	</tr></table>
+<#if record.item?has_content>
+
+<table align="left" class="itemtable" width="100%"><!-- start items --><#list record.item as item><#if item_index==0>
+<thead>
+	<tr>
+	<th colspan="8" style="background-color: rgb(187, 187, 187); width: 151px;">${item.description@label}</th>
+	<th style="background-color: rgb(187, 187, 187); width: 79px;">EAN No</th>
+	<th colspan="9" style="background-color: rgb(187, 187, 187); width: 53px;">${item.quantity@label}</th>
+	<th colspan="4" style="background-color: rgb(187, 187, 187); width: 98px;">Qty B/O</th>
+	<th colspan="3" style="background-color: rgb(187, 187, 187); width: 46px;">${item.units@label}</th>
+	<th colspan="6" style="background-color: rgb(187, 187, 187); width: 81px;">${item.rate@label}</th>
+	<th colspan="7" style="background-color: rgb(187, 187, 187); width: 68px;">${item.amount@label}</th>
+	<th style="background-color: rgb(187, 187, 187); width: 79px;">Item Code</th>
+	</tr>
+</thead>
+</#if><tr>
+	<td colspan="8" style="width: 155px;"><span style="color:#666666;">${item.description}</span><#if item.description?length gt 50>${item.description?substring(0, 50)}...<#else>${item.description}</#if></td>
+	<td style="width: 83px;">&nbsp;</td>
+	<td colspan="9" style="width: 57px;"><span style="color:#666666;">${item.quantity}</span></td>
+	<td colspan="4" style="width: 102px;">&nbsp;</td>
+	<td colspan="3" style="width: 50px;"><span style="color:#666666;">${item.units}</span></td>
+	<td colspan="6" style="width: 85px;"><span style="color:#666666;">${item.rate}</span></td>
+	<td colspan="7" style="width: 72px;"><span style="color:#666666;">${item.amount}</span></td>
+	<td style="width: 83px;">&nbsp;</td>
+	</tr>
+	</#list><!-- end items --></table>
+</#if>
+
+<table align="left" border="0" class="itemtable" width="100%"><tr>
+	<td class="item" colspan="24" rowspan="4">CONDITIONS OF SALE TERMS :<br />Payment with order OR if credit approved full payment by 20th of month following date of invoice. Goods remain property of the vendor until paid in full. Claims for shortages, damages or credit must be made within 7 days of receipt of goods. Prior approval must be obtained if any item is to be returned for credit. Overdue accounts may be charged interest at the rate of 2% per month. All goods are at purchasers risk after leaving our warehouse and are uninsured unless instructions are received otherwise all accounts net unless otherwise stated. No responsibility can be accepted after these goods have been processed, cut or their condition altered in any way</td>
+	<td colspan="6" style="align: right;"><b>${record.subtotal@label}</b></td>
+	<td colspan="7" style="align: right;"><b>${record.subtotal}</b></td>
+	</tr>
+	<tr>
+	<td colspan="6" style="align: right;"><b>Discount</b></td>
+	<td colspan="7" style="align: right;"><b>${record.discounttotal}</b></td>
+	</tr>
+	<tr>
+	<td colspan="6" style="align: right;">Total Tax</td>
+	<td colspan="7" style="align: right;">${record.taxtotal}</td>
+	</tr>
+	<tr>
+	<td colspan="6" style="align: right;"><b>Total</b></td>
+	<td colspan="7" style="align: right;"><b>${record.total}</b></td>
+	</tr>
+	<tr>
+	<td class="item" colspan="24">&nbsp;</td>
+	<td colspan="6" style="align: right;"><b>Amount Due</b></td>
+	<td colspan="7" style="align: right;"><b>${record.amountremainingtotalbox}</b></td>
+	</tr></table>
+<pbr />
+<#if companyInformation.logoUrl?length != 0><img height="60px" src="https://3828679-sb2.app.netsuite.com/core/media/me…=M1I5xbKeXvRPzgFFALudDR-8JlBwHScuXWoXgOZZ2dxWQd4_" vertical-align="top" width="75px" /></#if>
+<h1>Tax Invoice</h1>
+
+<h2>#Invoice ${record.tranid}</h2>
+</body>
+</pdf>
